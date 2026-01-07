@@ -37,6 +37,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // Bridge FloatingPanel via AppDelegate.
     AppState.shared.appDelegate = self
 
+    // 1. Add a new hook here. This hook should call view function to show a notification when clipboard catch new things
     Clipboard.shared.onNewCopy { History.shared.add($0) }
     Clipboard.shared.start()
 
