@@ -37,6 +37,16 @@ class Clipboard {
 
   init() {
     changeCount = pasteboard.changeCount
+    self.onNewCopy { [weak self] item in
+      self?.onNewCopyNotify(item)
+    }
+  }
+  
+  func onNewCopyNotify(_ item: HistoryItem) {
+    DispatchQueue.main.async {
+      let informer = InformView(text: "Copied")
+      informer.showAndDismiss()
+    }
   }
 
   func onNewCopy(_ hook: @escaping OnNewCopyHook) {
